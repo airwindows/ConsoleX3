@@ -44,8 +44,8 @@ PluginProcessor::PluginProcessor():AudioProcessor (
     
     for (int x = 0; x < bip_total; x++) bip[x] = 0.0;
 
-    fpdL = 1.0; while (fpdL < 16386) fpdL = (uint)rand()*UINT32_MAX;
-    fpdR = 1.0; while (fpdR < 16386) fpdR = (uint)rand()*UINT32_MAX;
+    fpdL = 1.0; while (fpdL < 16386) fpdL = (uint32_t)(rand()*UINT32_MAX);
+    fpdR = 1.0; while (fpdR < 16386) fpdR = (uint32_t)(rand()*UINT32_MAX);
     //this is reset: values being initialized only once. Startup values, whatever they are.
 
     // (internal ID, how it's shown in DAW generic view, {min, max}, default)
