@@ -193,32 +193,6 @@ jobs:
           iscc "packaging\installer.iss"
           mv "packaging/Output/${{ env.ARTIFACT_NAME }}.exe" "${{ env.ARTIFACTS_PATH }}/"
 
-      - name: Codesign with Azure Trusted Signing
-        if: ${{ runner.os == 'Windows' }}
-        uses: azure/artifact-signing-action@v2
-        with:
-          # The Azure Active Directory tenant (directory) ID.
-          azure-tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-
-          # The client (application) ID of an App Registration in the tenant.
-          azure-client-id: ${{ secrets.AZURE_CLIENT_ID }}
-
-          # A client secret that was generated for the App Registration.
-          azure-client-secret: ${{ secrets.AZURE_CLIENT_SECRET }}
-
-          # The Code Signing Account endpoint. The URI value must have a URI that aligns to the region your Code Signing Account and Certificate Profile you are specifying were created in during the setup of these resources.
-          endpoint: ${{ secrets.AZURE_ENDPOINT }}
-
-          # The Code Signing Account name.
-          signing-account-name: ${{ secrets.AZURE_CODE_SIGNING_NAME }}
-
-          # The Certificate Profile name.
-          certificate-profile-name: ${{ secrets.AZURE_CERT_PROFILE_NAME }}
-
-          # This signs all exes inside the folder
-          files-folder: ${{ env.ARTIFACTS_PATH }}
-          files-folder-filter: exe
-
       - name: Upload Exe (Windows)
         if: ${{ runner.os == 'Windows' }}
         uses: actions/upload-artifact@v7
