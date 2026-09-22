@@ -169,12 +169,12 @@ struct AirwindowsMeter : public juce::Component
     int displayHeight = 200;
     bool drawInfo = true;
     unsigned long dataPosition = 0;
-    std::array<float, dataPoints> dataPL;
-    std::array<float, dataPoints> dataPR;
-    std::array<float, dataPoints> dataSL;
-    std::array<float, dataPoints> dataSR;
-    std::array<float, dataPoints> dataZL;
-    std::array<float, dataPoints> dataZR;
+    std::array<float, dataPoints+2> dataPL;
+    std::array<float, dataPoints+2> dataPR;
+    std::array<float, dataPoints+2> dataSL;
+    std::array<float, dataPoints+2> dataSR;
+    std::array<float, dataPoints+2> dataZL;
+    std::array<float, dataPoints+2> dataZR;
     float blinkenInput;
     float blinkenDisplay;
     float blinkenComp;
@@ -194,9 +194,9 @@ struct AirwindowsMeter : public juce::Component
     float outputShift;
     float sustainedClip;
     
-    std::array<float, totalBins> peakTrack;
-    std::array<float, totalBins> slewTrack;
-    std::array<float, totalBins> bassTrack;
+    std::array<float, totalBins+2> peakTrack;
+    std::array<float, totalBins+2> slewTrack;
+    std::array<float, totalBins+2> bassTrack;
 
     void pushPeakL(float X) {dataPL[dataPosition] = X;}
     void pushPeakR(float X) {dataPR[dataPosition] = X;}
